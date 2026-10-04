@@ -1,0 +1,55 @@
+{
+  "schema_version": "jev.config/0.2",
+  "mode": "calibration",
+  "control_bundle": {
+    "id": "video-storage-procedure-demo",
+    "root": ".",
+    "revision": "0.2.0-exploratory"
+  },
+  "document_bindings": [
+    {
+      "authority": "trusted",
+      "id": "conventions",
+      "path": "conventions.md",
+      "sha256": "de2942137b342f06a131bb7391361b735dffe60ac7229355ead6a30c9b40a756"
+    }
+  ],
+  "inference": {
+    "adapter": "vercel-typesafe",
+    "model": "typesafe-ai/jev",
+    "endpoint": "https://ai-gateway.vercel.sh/typesafe/v1/systemone",
+    "credential_env": "AI_GATEWAY_API_KEY",
+    "timeout_seconds": 15,
+    "max_request_bytes": 100000,
+    "max_response_bytes": 100000,
+    "max_questions": 8
+  },
+  "providers": {
+    "enabled": [
+      "git-exact"
+    ]
+  },
+  "diff": {
+    "strategy": "bounded-sequential-v1",
+    "max_chunk_bytes": 12000,
+    "max_total_diff_bytes": 8388608,
+    "max_chunks": 1024
+  },
+  "limits": {
+    "max_policies": 8,
+    "max_policy_bytes": 65536,
+    "max_policy_folder_bytes": 2097152,
+    "max_calls": 40,
+    "max_seconds": 900,
+    "max_rounds": 1000000,
+    "max_candidates": 32,
+    "max_evidence_bytes": 80000,
+    "max_search_results": 20,
+    "max_input_bytes": 60000
+  },
+  "ci": {
+    "incomplete": "report",
+    "operational_error": "error"
+  },
+  "policy_dir": "."
+}
